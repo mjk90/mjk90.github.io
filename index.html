@@ -609,15 +609,23 @@
         </div>
     </div>
     <script type="text/javascript">
+        $(function () {
+            // Cookies
+            var cookiesAccepted = getCookie("cookiesAccepted");
 
-        $(document).on('click', '.cookie-popup-accept-cookies', function(e) {
-            //var expiryDate = moment($("#acceptCookiesExpiryDateUtc").val(), "DD/MM/YYYY hh:mm");
-            //var expires = "expires=" + expiryDate.toDate().toUTCString();
-            e.preventDefault();
-            $('.cookie-popup').slideToggle();
-            var expires = "expires=08/11/2017"
-            document.cookie = "cookiesAccepted=true; " + expires + "; path=/";
-        });
+            if (!cookiesAccepted) {
+                $('.cookie-popup').slideToggle();
+            }
+
+            $(document).on('click', '.cookie-popup-accept-cookies', function(e) {
+                //var expiryDate = moment($("#acceptCookiesExpiryDateUtc").val(), "DD/MM/YYYY hh:mm");
+                //var expires = "expires=" + expiryDate.toDate().toUTCString();
+                e.preventDefault();
+                $('.cookie-popup').slideToggle();
+                var expires = "expires=08/11/2017"
+                document.cookie = "cookiesAccepted=true; " + expires + "; path=/";
+            });
+        });    
 
         function getCookie(cname) {
             var name = cname + "=";
@@ -634,9 +642,8 @@
             }
             return "";
         }
-
-        $('.cookie-popup').slideToggle();
     </script>
+
 
 </body>
 
